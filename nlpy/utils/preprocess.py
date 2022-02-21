@@ -1,7 +1,7 @@
 from itertools import chain
 from re import split
-from .vocab import TOKENIZER
-from typing import List, Union
+#from .vocab import TOKENIZER
+from typing import List, Union, Tuple
 
 def _pack_complete(completed_tokens: List[List],
     candidates: List[List], len_threshold: int,
@@ -28,7 +28,7 @@ def _pack_complete(completed_tokens: List[List],
 
     Returns
     -------
-     
+    completed_tokens, remainder : Tuple[List[List], List]
     """
     remainder = []
     for token_list in candidates:
@@ -52,6 +52,27 @@ def _token_packing(curr_tokens : List = [],
     packing_tolerance:int=8):
     """
     Pack sequence of tokens together
+
+    Parameters
+    ----------
+    curr_tokens : List
+        list of tokens to be completed
+
+    next_tokens : List
+        candidate token list
+
+    max_len : int
+        max token list length
+
+    min_len : int
+        min length of next_tokens if they are to be used
+
+    sep_tokens : str
+        separator token, default: "<SEP>"
+
+    packing_tolerance : int
+
+    Returns : 
     """
 
     completed_tokens = []
