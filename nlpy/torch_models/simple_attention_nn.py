@@ -13,6 +13,7 @@ class AttentionNetwork(nn.Module):
             embed_dim=embedding_dim,
             num_heads=att_num_heads,
             batch_first=True)
+        self.linear = nn.Linear(embedding_dim,embedding_dim)
         self.relu = nn.ReLU()
         self.maxp1d = nn.MaxPool1d(embedding_dim)
         self.dropout = nn.Dropout(p=dropout)
