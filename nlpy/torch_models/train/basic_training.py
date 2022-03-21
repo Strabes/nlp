@@ -3,7 +3,9 @@ import torch
 import numpy as np
 
 def train_epoch(model, train_dataloader, loss_fn, optimizer, device):
-
+    """
+    Training a basic torch text model
+    """
     t0_epoch = time.time()
     model.train()
 

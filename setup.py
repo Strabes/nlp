@@ -8,6 +8,11 @@ def list_reqs(fname='requirements.txt'):
     with open(fname) as fd:
         return fd.read().splitlines()
 
+extras = {
+    'tensorflow': ['tensorflow'],
+    'torch': ['torch']
+}
+
 setuptools.setup(
     name="nlpy",
     version="0.0.1",
@@ -27,4 +32,5 @@ setuptools.setup(
     ],
     install_requires = list_reqs(),
     python_requires='>=3.6',
+    extras_require=extras
 )

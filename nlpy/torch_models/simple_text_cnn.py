@@ -46,15 +46,15 @@ class SimpleTextCNN(nn.Module):
         else:
             raise(ValueError(f"conv_padding must be one of 'valid' or 'same'" +
             f"but received {conv_padding}"))
-        self.relu = nn.ReLU()
+        # self.relu = nn.ReLU()
         self.maxp1d = nn.MaxPool1d(self.conv_output_layer_size)
         self.dropout = nn.Dropout(p=dropout)
         self.linear = nn.Linear(sequence_length,output_dim)
 
     def forward(self, x):
-        x = self.embedding(x)
-        x = self.conv1d(x.permute(0,2,1))
-        x = self.relu(x)
+        x = self.embedding(x) # (batch_size, sequence_length, embedding_dim)
+        x = self.conv1d(x.permute(0,2,1)) # (batch_size, conv_out_channels, conv_output_layer_size)
+        # x = self.relu(x)
         x = self.maxp1d(x)
         x = self.dropout(x.squeeze())
         x = self.linear(x)

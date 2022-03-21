@@ -72,44 +72,14 @@ class SimpleTextCNN(Model):
         self.dropout = Dropout(rate=dropout_rate)
         self.dense = Dense(units=output_size)
 
-    def call(self,x):
+    def call(self, x, training):
         x = self.embedding(x)
         x = self.conv1d(x)
         x = self.relu(x)
         x = self.maxp1d(x)
-        x = self.dropout(x)
+        x = self.dropout(x, training=training)
         x = tf.squeeze(x)
         x = self.dense(x)
         return x
 
 
-@tf.function
-def train_step(model, features, targets, loss_object, optimizer,
-    train_loss, train_rmse):
-    """
-    Training step
-
-    Parameters
-    ----------
-    model : 
-    """
-    with tf.GradientTape() as tape:
-    # training=True is only needed if there are layers with different
-    # behavior during training versus inference (e.g. Dropout).
-        predictions = model(features, training=True)
-        loss = loss_object(targets, predictions)
-        gradients = tape.gradient(loss, model.trainable_variables)
-    optimizer.apply_gradients(zip(gradients, model.trainable_variables))
-
-    train_loss(loss)
-    train_rmse(targets, predictions)
-
-@tf.function
-def test_step(model, features, targets, loss_object, test_loss, test_rmse):
-  # training=False is only needed if there are layers with different
-  # behavior during training versus inference (e.g. Dropout).
-    predictions = model(features, training=False)
-    t_loss = loss_object(targets, predictions)
-
-    test_loss(t_loss)
-    test_rmse(targets, predictions)

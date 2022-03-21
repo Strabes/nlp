@@ -53,7 +53,7 @@ class EncoderLayer(tf.keras.layers.Layer):
         self.dropout1 = tf.keras.layers.Dropout(dropout_rate)
         self.dropout2 = tf.keras.layers.Dropout(dropout_rate)
 
-    def call(self, x, training, mask):
+    def call(self, x, training, mask=None):
 
         attn_output = self.mha(x, x, x, mask, return_attention_scores=False)  # (batch_size, input_seq_len, d_model)
         attn_output = self.dropout1(attn_output, training=training)
@@ -91,7 +91,7 @@ class Encoder(tf.keras.layers.Layer):
 
         self.dropout = tf.keras.layers.Dropout(dropout_rate)
 
-    def call(self, x, training, mask):
+    def call(self, x, training, mask=None):
 
         seq_len = tf.shape(x)[1]
 

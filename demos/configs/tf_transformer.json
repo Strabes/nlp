@@ -1,0 +1,14 @@
+{   
+    "num_layers":4,
+    "d_model":16,
+    "key_dim":16,
+    "value_dim":16,
+    "num_heads":4,
+    "dff":64,
+    "input_vocab_size":2000,
+    "maximum_position_encoding":64,
+    "dropout_rate":0.2,
+    "batch_size":512,
+    "learning_rate":0.05,
+    "data_path":"data/yelp.csv",
+    "epochs":10}

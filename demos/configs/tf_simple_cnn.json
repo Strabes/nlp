@@ -1,0 +1,15 @@
+{
+    "batch_size": 128,
+    "conv_channels": 24,
+    "conv_kernel_size": 4,
+    "conv_stride": 2,
+    "conv_padding": "valid",
+    "conv_dilation": 1,
+    "embedding_dim": 100,
+    "dropout_rate": 0.25,
+    "output_size": 1,
+    "learning_rate": 0.01,
+    "max_num_words": 10000,
+    "max_sequence_length": 250,
+    "data_path":"data/yelp.csv",
+    "epochs":10}
