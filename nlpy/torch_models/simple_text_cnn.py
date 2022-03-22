@@ -15,13 +15,21 @@ class SimpleTextCNN(nn.Module):
         Parameters
         ----------
         sequence_length : int
+            token sequence length
         num_embeddings : int
+            number of tokens in vocab
         embedding_dim : int
+            token embedding dimension
         padding_idx : int
+            padding token index
         conv_out_channels : int
+            number of convolution channels
         conv_kernel_size : int
+            convolution kernel size
         dropout : float
+            dropout rate
         output_dim : int
+            output dimension
         """
         super(SimpleTextCNN, self).__init__()
         self.embedding = nn.Embedding(

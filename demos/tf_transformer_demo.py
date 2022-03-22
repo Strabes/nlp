@@ -1,8 +1,6 @@
 #%%
-import time
 import pandas as pd
 import tensorflow as tf
-import json
 import inspect
 physical_devices = tf.config.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
@@ -11,14 +9,9 @@ from sklearn.model_selection import train_test_split
 from nlpy.tf_models.preprocess import dataset_callable
 from nlpy.tf_models.transformer import Encoder
 from nlpy.tf_models.train.basic_training import train, max_pooler
-from tensorflow.keras.layers import (
-    MaxPool1D, Dense, Dropout)
+from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras import Model
-
-def load_config(config):
-    with open(config,"r") as f:
-        config = json.load(f)
-    return config
+from nlpy.utils import load_config
 
 class Transformer(Model):
     def __init__(self,**kwargs):
