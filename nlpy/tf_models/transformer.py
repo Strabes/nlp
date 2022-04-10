@@ -1,7 +1,7 @@
 import math
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers import MultiHeadAttention, Dropout, Embedding
+from tensorflow.keras.layers import MultiHeadAttention
 
 
 def get_angles(pos, i, d_model):
