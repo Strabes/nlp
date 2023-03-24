@@ -2,9 +2,15 @@ import time
 import torch
 import numpy as np
 
-def train_epoch(model, train_dataloader, loss_fn, optimizer, device):
+def train_epoch(model, train_dataloader, loss_fn, optimizer, device, scheduler=None):
     """
     Training a basic torch text model
+
+    Parameters
+    ----------
+    model: torch.nn.Module
+
+    train_dataloader: torch.utils.data.DataLoader
     """
     t0_epoch = time.time()
     model.train()
@@ -21,6 +27,9 @@ def train_epoch(model, train_dataloader, loss_fn, optimizer, device):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+
+    if scheduler is not None:
+        scheduler.step()
 
     mean_train_loss = epoch_loss / len(train_dataloader)
 

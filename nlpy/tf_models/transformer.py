@@ -5,10 +5,36 @@ from tensorflow.keras.layers import MultiHeadAttention
 
 
 def get_angles(pos, i, d_model):
+    """Get angles for positional encoding
+    
+    Parameters
+    ----------
+    pos : int
+    
+    i : int
+
+    d_model : int
+
+    Returns
+    -------
+    int
+    """
     angle_rates = 1 / np.power(10000, (2 * (i//2)) / np.float32(d_model))
     return pos * angle_rates
 
 def positional_encoding(position, d_model):
+    """Construct positional encodings
+    
+    Parameters
+    ----------
+    position : int
+
+    d_model : int
+
+    Returns
+    -------
+    tensorflow.tensor
+    """
     angle_rads = get_angles(
         np.arange(position)[:, np.newaxis],
         np.arange(d_model)[np.newaxis, :],
